@@ -1,0 +1,8 @@
+solr.xml
+*/core.properties
+*/data
+*/README.txt
+*/*/clustering/
+*/*/lang
+*/*/velocity/
+*.DS_Store
