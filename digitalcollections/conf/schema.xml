@@ -526,7 +526,7 @@
     </fieldType>
 
 
-    <!-- While the primary target of this analysis is LC Call Numbers, 
+    <!-- While the primary target of this analysis is LC Call Numbers,
     other call numbers such as "1-1-1" and "Thesis 3" should be supported. -->
     <fieldType name="callNumberNormalized" class="solr.TextField" omitNorms="true">
       <analyzer>
