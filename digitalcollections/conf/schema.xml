@@ -189,6 +189,7 @@
     <dynamicField name="*_llsi" type="location" stored="true" indexed="true" multiValued="false"/>
     <dynamicField name="*_llsim" type="location" stored="true" indexed="true" multiValued="true"/>
     <dynamicField name="*_geocoordinates" type="location_rpt" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_structure" type="document_path" indexed="true" stored="false"/>
 
     <!-- you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
     <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
@@ -419,6 +420,7 @@
 <copyField source="member_of_collections_ssim" dest="collection_tesim" />
 <copyField source="human_readable_type_tesim" dest="format_tesim" />
 <<copyField source="language_tesim" dest="lang_tesim" />
+<copyField source="id" dest="document_structure" />
 
 
 
@@ -562,6 +564,16 @@
       <analyzer type="query">
         <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
       </analyzer>
+    </fieldType>
+
+    <!-- some idea of the structure of the documents Book - Page - File Set -->
+    <fieldType name="document_path" class="solr.TextField" positionIncrementGap="100">
+        <analyzer type="index">
+            <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="_"/>
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer class="solr.KeywordTokenizerFactory"/>
+        </analyzer>
     </fieldType>
 
   </types>
