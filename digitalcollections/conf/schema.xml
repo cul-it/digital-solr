@@ -419,7 +419,7 @@
 <!-- copyfields to join fedora hydraedit -->
 <copyField source="member_of_collections_ssim" dest="collection_tesim" />
 <copyField source="human_readable_type_tesim" dest="format_tesim" />
-<<copyField source="language_tesim" dest="lang_tesim" />
+<copyField source="language_tesim" dest="lang_tesim" />
 <copyField source="id" dest="document_structure" />
 
 
