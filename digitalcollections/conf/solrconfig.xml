@@ -13,6 +13,7 @@ as well as the default solrconfig file included with Solr
   <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
   <dataDir>${solr.data.dir:}</dataDir>
+ <schemaFactory class="ClassicIndexSchemaFactory"/>
   <requestHandler name="search" class="solr.SearchHandler" default="true">
   
     <!-- config for the admin interface --> 
