@@ -16,6 +16,9 @@
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
 
+    <!-- for extracted content from word, pdf, etc. -->
+    <field name="content" type="text" stored="true" indexed="true" multiValued="false"/>
+
   <!--these fields are hard coded in places in hydra-head -->
   <field name="active_fedora_model_s" type="string" stored="true" indexed="true"/>
     <field name="extent_t" type="string" stored="true" indexed="true"/>
