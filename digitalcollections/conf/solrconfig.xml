@@ -252,4 +252,10 @@ as well as the default solrconfig file included with Solr
 -->
 </updateHandler>
 
+<requestHandler name="/update/extract"
+                  startup="lazy"
+                  class="solr.extraction.ExtractingRequestHandler" >
+    <lst name="defaults" />
+</requestHandler>
+
 </config>
