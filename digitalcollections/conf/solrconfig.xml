@@ -118,7 +118,7 @@ as well as the default solrconfig file included with Solr
   </searchComponent>
   <requestHandler name="/replication" class="solr.ReplicationHandler" startup="lazy"/>
   <requestDispatcher handleSelect="true">
-  <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048"/>
+  <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="20480"/>
   </requestDispatcher>
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler"/>
   <!--
