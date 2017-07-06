@@ -12,11 +12,7 @@ as well as the default solrconfig file included with Solr
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" />
   <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
-  <lib dir="${solr.contrib.dir:../../../contrib}/clustering/lib/" />
- <!-- an exact path can be used to specify a specific file.  This
-       will cause a serious error to be logged if it can't be loaded.
-    -->
-  <lib path="../a-jar-that-does-not-exist.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/clustering/lib/" />
 
   <dataDir>${solr.data.dir:}</dataDir>
  <schemaFactory class="ClassicIndexSchemaFactory"/>
