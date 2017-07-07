@@ -260,7 +260,7 @@ as well as the default solrconfig file included with Solr
     <lst name="defaults">
       <!-- All the main content goes into "text"... if you need to return
            the extracted text or do highlighting, use a stored field. -->
-      <str name="fmap.content">content</str>
+      <str name="fmap.content">text_teiv</str>
       <str name="lowernames">true</str>
       <str name="uprefix">ignored_</str>
 
