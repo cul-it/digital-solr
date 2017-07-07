@@ -265,9 +265,9 @@
   </fields>
 
   <!-- START hydra deprecated items -->
-<!--
-  <defaultSearchField>text</defaultSearchField>
--->
+
+  <defaultSearchField>text_teiv</defaultSearchField>
+
   <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
 <!--
   <solrQueryParser defaultOperator="AND"/>
