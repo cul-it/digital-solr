@@ -403,7 +403,6 @@
 <copyField source="author_tesim" dest="author_creator_tesim" />
 <copyField source="author_tesim" dest="creator_t" />
 <copyField source="member_of_collections_ssim" dest="collection_tesim" />
-<copyField source="thumbnail_path_ss" dest="collection_tesim" />
 <copyField source="author_tesim" dest="creator_facet_tesim" />
 <copyField source="creator_tesim" dest="creator_facet_tesim" />
 <copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
