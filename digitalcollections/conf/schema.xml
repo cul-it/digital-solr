@@ -388,10 +388,12 @@
 <copyField source="*_mat_tech_tesim" dest="mat_tech_tesim" />
 <copyField source="*_bibliography_tesim" dest="bibliography_tesim" />
 <copyField source="*_date_tesim" dest="date_tesim" />
-<copyField source="*_subject_tesim" dest="subject_tesim" />
+<copyField source="*_subject_tesim" dest="subject_facet_tesim" />
+<copyField source="subject_tesim" dest="subject_facet_tesim" />
 <copyField source="*_description_tesim" dest="description_tesim" />
 <copyField source="*_extent_tesim" dest="extent_tesim" />
 <copyField source="*_series_relation_tesim" dest="series_relation_tesim" />
+<copyField source="member_of_collections_ssim" dest="collection_tesim" />
 
 
 
@@ -400,7 +402,8 @@
 <!-- copyfields to join up dlxs and sharedshelf -->
 <copyField source="author_tesim" dest="author_creator_tesim" />
 <copyField source="author_tesim" dest="creator_t" />
-
+<copyField source="member_of_collections_ssim" dest="collection_tesim" />
+<copyField source="thumbnail_path_ss" dest="collection_tesim" />
 <copyField source="author_tesim" dest="creator_facet_tesim" />
 <copyField source="creator_tesim" dest="creator_facet_tesim" />
 <copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
