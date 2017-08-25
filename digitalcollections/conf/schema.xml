@@ -409,7 +409,6 @@
   <copyField source="pubdate_tesim" dest="pubdate_timv" />
   <copyField source="publisher_tesim" dest="all_text_timv" />
   <copyField source="publisher_tesim" dest="publisher_timv" />
-  <copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
   <copyField source="pubstmt_idno_tesim" dest="book_id_ts"/>
   <copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
   <copyField source="repository_name_tesim" dest="repository_tesim" />
