@@ -12,13 +12,11 @@ as well as the default solrconfig file included with Solr
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" />
   <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/contrib/clustering/lib/" />
-
   <dataDir>${solr.data.dir:}</dataDir>
  <schemaFactory class="ClassicIndexSchemaFactory"/>
   <requestHandler name="search" class="solr.SearchHandler" default="true">
-
-    <!-- config for the admin interface -->
+  
+    <!-- config for the admin interface --> 
   <admin>
     <defaultQuery>*:*</defaultQuery>
   </admin>
@@ -26,7 +24,7 @@ as well as the default solrconfig file included with Solr
   <!--
   default values for query parameters can be specified, these
   will be overridden by parameters in the request
-
+  
   -->
   <lst name="defaults">
   <str name="defType">edismax</str>
@@ -43,11 +41,11 @@ as well as the default solrconfig file included with Solr
   below, which the default blacklight_config will specify for
   those searches. You may also be interested in:
   http://wiki.apache.org/solr/LocalParams
-
+  
   -->
   <str name="qf">
-  id
-  all_text_timv
+  id 
+  all_text_timv 
   pj_id
   <!--
   active_fedora_model_ssi  -->
@@ -109,7 +107,7 @@ as well as the default solrconfig file included with Solr
   <!--
   Multiple "Spell Checkers" can be declared and used by this component
   (e.g. for title_spell field)
-
+  
   -->
   <lst name="spellchecker">
   <str name="name">default</str>
@@ -120,7 +118,7 @@ as well as the default solrconfig file included with Solr
   </searchComponent>
   <requestHandler name="/replication" class="solr.ReplicationHandler" startup="lazy"/>
   <requestDispatcher handleSelect="true">
-  <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="20480"/>
+  <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048"/>
   </requestDispatcher>
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler"/>
   <!--
@@ -136,20 +134,20 @@ as well as the default solrconfig file included with Solr
   ?update.contentType=text/csv
   This handler will pick a response format to match the input
   if the 'wt' parameter is not explicit
-
+  
   -->
   <requestHandler name="/update" class="solr.UpdateRequestHandler">
   <!--
   See below for information on defining
   updateRequestProcessorChains that can be used by name
   on each Update Request
-
+  
   -->
   <!--
   <lst name="defaults">
   <str name="update.chain">dedupe</str>
   </lst>
-
+  
   -->
   </requestHandler>
   <!--
@@ -202,7 +200,7 @@ as well as the default solrconfig file included with Solr
   searcher to be opened to make those changes visible.
   If the updateLog is enabled, then it's highly recommended to
   have some sort of hard autoCommit to limit the log size.
-
+  
   -->
   <autoCommit>
     <maxTime>${solr.autoCommit.maxTime:15000}</maxTime>
@@ -213,7 +211,7 @@ as well as the default solrconfig file included with Solr
   'soft' commit which only ensures that changes are visible
   but does not ensure that data is synced to disk.  This is
   faster and more near-realtime friendly than a hard commit.
-
+  
   -->
   <autoSoftCommit>
     <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
@@ -224,7 +222,7 @@ as well as the default solrconfig file included with Solr
   take actions.
   postCommit - fired after every commit or optimize command
   postOptimize - fired after every optimize command
-
+  
   -->
   <!--
   The RunExecutableListener executes an external command from a
@@ -235,13 +233,13 @@ as well as the default solrconfig file included with Solr
   (default="true")
   args - the arguments to pass to the program.  (default is none)
   env - environment variables to set.  (default is none)
-
+  
   -->
   <!--
   This example shows how RunExecutableListener could be used
   with the script based replication...
   http://wiki.apache.org/solr/CollectionDistribution
-
+  
   -->
   <!--
   <listener event="postCommit" class="solr.RunExecutableListener">
@@ -253,22 +251,5 @@ as well as the default solrconfig file included with Solr
 </listener>
 -->
 </updateHandler>
-
-  <requestHandler name="/update/extract"
-                  startup="lazy"
-                  class="solr.extraction.ExtractingRequestHandler" >
-    <lst name="defaults">
-      <!-- All the main content goes into "text"... if you need to return
-           the extracted text or do highlighting, use a stored field. -->
-      <str name="fmap.content">all_text_timv</str>
-      <str name="lowernames">true</str>
-      <str name="uprefix">ignored_</str>
-
-      <!-- capture link hrefs but ignore div attributes -->
-      <str name="captureAttr">true</str>
-      <str name="fmap.a">links</str>
-      <str name="fmap.div">ignored_</str>
-    </lst>
-  </requestHandler>
 
 </config>

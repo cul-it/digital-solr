@@ -1,0 +1,7 @@
+
+Before running the curl scripts, do this
+export SOLR_USER=[[redacted]]
+export SOLR_PASSWORD=[[redacted]]
+
+
+curl -X GET -H 'Content-type:application/json'   -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
