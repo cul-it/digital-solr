@@ -1,0 +1,85 @@
+https://github.com/projectblacklight/blacklight-jetty/blob/master/solr/blacklight-core/conf/schema.xml
+
+    <!-- This is an example of using the KeywordTokenizer along
+         With various TokenFilterFactories to produce a sortable field
+         that does not include some properties of the source text
+      -->
+    <fieldType name="alphaOnlySort" class="solr.TextField" sortMissingLast="true" omitNorms="true">
+      <analyzer>
+        <!-- KeywordTokenizer does no actual tokenizing, so the entire
+             input string is preserved as a single token
+          -->
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <!-- The LowerCase TokenFilter does what you expect, which can be
+             when you want your sorting to be case insensitive
+          -->
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!-- The TrimFilter removes any leading or trailing whitespace -->
+        <filter class="solr.TrimFilterFactory" />
+        <filter class="solr.PatternReplaceFilterFactory"
+                pattern="([^a-z])" replacement="" replace="all"
+        />
+      </analyzer>
+    </fieldType>
+
+Before running the curl scripts, do this
+export SOLR_USER=[[redacted]]
+export SOLR_PASSWORD=[[redacted]]
+
+curl -X POST -H 'Content-type:application/json' --data-binary '
+{
+    "replace-field-type": {
+        "name": "alphaOnlySort",
+        "class": "solr.TextField",
+        "sortMissingLast": "true",
+        "omitNorms": "true",
+        "analyzer": {
+            "tokenizer": {
+                "class": "solr.KeywordTokenizerFactory"
+            },
+            "filters": [{
+                "class": "solr.LowerCaseFilterFactory"
+            }, {
+                "class": "solr.TrimFilterFactory"
+            }, {
+                "class": "solr.PatternReplaceFilterFactory",
+                "pattern": "([^a-z0-9])",
+                "replacement": "",
+                "replace": "all"
+            }]
+        }
+    }
+}
+'   -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-field-type":{ "name":"alphaOnlySort" }
+}'  -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
+
+
+dynamic field
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-dynamic-field":{
+     "name":"*_alpha_only_sort",
+     "type":"alphaOnlySort",
+     "stored":false,
+     "indexed":true
+ }
+}'   -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-dynamic-field":{ "name":"*_alpha_only_sort" }
+}'   -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
+
+
+copyfield
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-copy-field":{
+     "source":"title_ssi",
+     "dest":[ "title_alpha_only_sort" ]}
+}'   -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
+
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-copy-field":{ "source":"title_ssi", "dest":[ "title_alpha_only_sort" ]}
+}'   -u "${SOLR_USER}:${SOLR_PASSWORD}" http://aws-108-118.internal.library.cornell.edu:8983/solr/digitalcollections4/schema
